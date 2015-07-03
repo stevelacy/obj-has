@@ -1,7 +1,7 @@
 {
   "name": "obj-has",
   "description": "Determine if an Object has required properties",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "http://github.com/stevelacy/obj-has",
   "repository": {
     "type": "git",
