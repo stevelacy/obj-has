@@ -69,4 +69,30 @@ has(object, required, function(err, data) {
 
 ```
 
+#### returns
+`Object or Array`
+
+```js
+var has = require('obj-has');
+
+// Array of required keys
+var required = [
+  'test',
+  'second',
+  'missing'
+];
+
+var object = {
+  test: 'item',
+  second: false
+};
+
+check = has(object, required);
+// => Error ['missing required argument: missing']
+
+
+```
+
+
+
 ## LICENSE [MIT](LICENSE)

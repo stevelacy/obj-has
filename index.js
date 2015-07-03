@@ -1,29 +1,37 @@
 'use strict';
 
 module.exports = function(obj, has, cb) {
-  if (has instanceof Array) {
-    var errors = [];
+  var errors = {};
+
+  function returnData(data) {
+    if (Object.getOwnPropertyNames(data).length !== 0) {
+      if (typeof cb === 'function') {
+        return cb(data);
+      }
+      return new Error('missing required argument: ' + Object.keys(errors)[0]);
+    }
+    if (typeof cb === 'function') {
+      return cb(null, obj);
+    }
+    return obj;
+  }
+
+  if (has.constructor === Array) {
     has.forEach(function(v) {
       if (typeof obj[v] === 'undefined') {
-        errors.push(v);
+        errors[v] = 'is required';
       }
     });
-    if (errors[0]) {
-      return cb(errors);
-    }
-    return cb(null, obj);
+    return returnData(errors);
   }
 
   if (has instanceof Object) {
-    var errors = {};
-    Object.keys(has).forEach(function(v, k) {
+    Object.keys(has).forEach(function(v) {
       if (typeof obj[v] === 'undefined') {
-        errors[v] = has[v]
+        errors[v] = has[v];
       }
     });
-    if (Object.getOwnPropertyNames(errors).length !== 0) {
-      return cb(errors);
-    }
-    return cb(null, obj);
+    return returnData(errors);
   }
+
 };
