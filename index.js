@@ -18,7 +18,7 @@ module.exports = function(obj, has, cb) {
 
   if (has.constructor === Array) {
     has.forEach(function(v) {
-      if (typeof obj[v] === 'undefined') {
+      if (typeof obj[v] === 'undefined' || obj[v] === null) {
         errors[v] = 'is required';
       }
     });
@@ -27,7 +27,7 @@ module.exports = function(obj, has, cb) {
 
   if (has instanceof Object) {
     Object.keys(has).forEach(function(v) {
-      if (typeof obj[v] === 'undefined') {
+      if (typeof obj[v] === 'undefined' || obj[v] === null) {
         errors[v] = has[v];
       }
     });

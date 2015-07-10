@@ -28,6 +28,22 @@ describe('obj-has', function() {
 
       });
 
+      it('should return an array with null keys', function(done) {
+
+        var object = {
+          test: 'item',
+          second: false,
+          missing: null
+        };
+
+        has(object, required, function(err) {
+          should(err).be.instanceof(Object);
+          should(err.missing).equal('is required');
+          done();
+        });
+
+      });
+
       it('should return null and the object without missing keys', function(done) {
 
         var object = {
@@ -68,6 +84,22 @@ describe('obj-has', function() {
           should(err.missing).equal('same as before');
           done();
         });
+      });
+
+      it('should return an array with null keys', function(done) {
+
+        var object = {
+          test: 'item',
+          second: false,
+          missing: null
+        };
+
+        has(object, required, function(err) {
+          should(err).be.instanceof(Object);
+          should(err.missing).equal('same as before');
+          done();
+        });
+
       });
 
       it('should return null and the object without missing keys', function(done) {
@@ -111,6 +143,21 @@ describe('obj-has', function() {
 
       });
 
+      it('should return an object with missing keys', function(done) {
+
+        var object = {
+          test: 'item',
+          second: false,
+          missing: null
+        };
+
+        var check = has(object, required);
+        should(check).be.instanceof(Error);
+        should(check.message).equal('missing required argument: missing');
+        done();
+
+      });
+
       it('should return null and the object without missing keys', function(done) {
 
         var object = {
@@ -141,6 +188,21 @@ describe('obj-has', function() {
         var object = {
           test: 'item',
           second: false
+        };
+
+        var check = has(object, required);
+        should(check).be.instanceof(Error);
+        should(check.message).equal('missing required argument: missing');
+        done();
+
+      });
+
+      it('should return an object with missing keys and errors', function(done) {
+
+        var object = {
+          test: 'item',
+          second: false,
+          missing: null
         };
 
         var check = has(object, required);
