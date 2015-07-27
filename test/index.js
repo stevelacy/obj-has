@@ -20,7 +20,7 @@ describe('obj-has', function() {
           second: false
         };
 
-        has(object, required, function(err) {
+        has({obj: object, required: required}, function(err) {
           should(err).be.instanceof(Object);
           should(err.missing).equal('is required');
           done();
@@ -36,7 +36,7 @@ describe('obj-has', function() {
           missing: null
         };
 
-        has(object, required, function(err) {
+        has({obj: object, required: required}, function(err) {
           should(err).be.instanceof(Object);
           should(err.missing).equal('is required');
           done();
@@ -52,7 +52,7 @@ describe('obj-has', function() {
           missing: ''
         };
 
-        has(object, required, function(err) {
+        has({obj: object, required: required}, function(err) {
           should(err).be.instanceof(Object);
           should(err.missing).equal('is required');
           done();
@@ -68,7 +68,7 @@ describe('obj-has', function() {
           missing: 'false'
         };
 
-        has(object, required, function(err, data) {
+        has({obj: object, required: required}, function(err, data) {
           should(err).be.null;
           should(data).equal(object);
           done();
@@ -93,7 +93,7 @@ describe('obj-has', function() {
           second: false
         };
 
-        has(object, required, function(err, data) {
+        has({obj: object, required: required}, function(err, data) {
           should(err).be.instanceof(Object);
           should(data).be.type.undefined;
           should(err.missing).not.be.null;
@@ -110,7 +110,7 @@ describe('obj-has', function() {
           missing: null
         };
 
-        has(object, required, function(err) {
+        has({obj: object, required: required}, function(err) {
           should(err).be.instanceof(Object);
           should(err.missing).equal('same as before');
           done();
@@ -126,7 +126,7 @@ describe('obj-has', function() {
           missing: ''
         };
 
-        has(object, required, function(err) {
+        has({obj: object, required: required}, function(err) {
           should(err).be.instanceof(Object);
           should(err.missing).equal('same as before');
           done();
@@ -142,7 +142,7 @@ describe('obj-has', function() {
           missing: 'false'
         };
 
-        has(object, required, function(err, data) {
+        has({obj: object, required: required}, function(err, data) {
           should(err).be.null;
           should(data).equal(object);
           done();
@@ -168,7 +168,7 @@ describe('obj-has', function() {
           second: false
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Error);
         should(check.message).equal('missing required argument: missing');
         done();
@@ -183,7 +183,7 @@ describe('obj-has', function() {
           missing: null
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Error);
         should(check.message).equal('missing required argument: missing');
         done();
@@ -198,7 +198,7 @@ describe('obj-has', function() {
           missing: ''
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Error);
         should(check.message).equal('missing required argument: missing');
         done();
@@ -213,7 +213,7 @@ describe('obj-has', function() {
           missing: 'false'
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Object);
         should(check).equal(object);
         done();
@@ -237,7 +237,7 @@ describe('obj-has', function() {
           second: false
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Error);
         should(check.message).equal('missing required argument: missing');
         done();
@@ -252,7 +252,7 @@ describe('obj-has', function() {
           missing: null
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Error);
         should(check.message).equal('missing required argument: missing');
         done();
@@ -267,7 +267,7 @@ describe('obj-has', function() {
           missing: ''
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Error);
         should(check.message).equal('missing required argument: missing');
         done();
@@ -282,7 +282,7 @@ describe('obj-has', function() {
           missing: 'false'
         };
 
-        var check = has(object, required);
+        var check = has({obj: object, required: required});
         should(check).be.instanceof(Object);
         should(check).equal(object);
         done();

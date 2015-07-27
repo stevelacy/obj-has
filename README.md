@@ -46,7 +46,7 @@ var object = {
   second: false
 };
 
-has(object, required, function(err, data) {
+has({obj: object, required: required}, function(err, data) {
   // => ['missing']
 });
 
@@ -63,7 +63,7 @@ var object = {
   second: false
 };
 
-has(object, required, function(err, data) {
+has({obj: object, required: required}, function(err, data) {
   // => { missing: 'required key' }
 });
 
@@ -87,7 +87,7 @@ var object = {
   second: false
 };
 
-check = has(object, required);
+check = has({obj: object, required: required});
 // => Error ['missing required argument: missing']
 
 

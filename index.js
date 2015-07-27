@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(obj, has, cb) {
+module.exports = function(opts, cb) {
   var errors = {};
 
   function returnData(data) {
@@ -11,24 +11,24 @@ module.exports = function(obj, has, cb) {
       return new Error('missing required argument: ' + Object.keys(errors)[0]);
     }
     if (typeof cb === 'function') {
-      return cb(null, obj);
+      return cb(null, opts.obj);
     }
-    return obj;
+    return opts.obj;
   }
 
-  if (has.constructor === Array) {
-    has.forEach(function(v) {
-      if (typeof obj[v] === 'undefined' || obj[v] === null || obj[v].length === 0) {
+  if (opts.required.constructor === Array) {
+    opts.required.forEach(function(v) {
+      if (typeof opts.obj[v] === 'undefined' || opts.obj[v] === null || opts.obj[v].length === 0) {
         errors[v] = 'is required';
       }
     });
     return returnData(errors);
   }
 
-  if (has instanceof Object) {
-    Object.keys(has).forEach(function(v) {
-      if (typeof obj[v] === 'undefined' || obj[v] === null || obj[v].length === 0) {
-        errors[v] = has[v];
+  if (opts.required instanceof Object) {
+    Object.keys(opts.required).forEach(function(v) {
+      if (typeof opts.obj[v] === 'undefined' || opts.obj[v] === null || opts.obj[v].length === 0) {
+        errors[v] = opts.required[v];
       }
     });
     return returnData(errors);
